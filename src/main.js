@@ -8,6 +8,7 @@ import renderer from '@/canvas/renderer';
 import scene from '@/canvas/scene';
 import { World } from '@/game/world/World';
 import { Player } from '@/game/entities/Player';
+import { NPCManager } from '@/game/entities/NPCManager';
 // import postfx from '@/canvas/postfx/postfx';
 
 let stats = null;
@@ -49,6 +50,9 @@ class Site extends component(null, {
     
     // Set camera to follow player
     camera.setFollowTarget(player);
+    
+    // Initialize NPC manager
+    new NPCManager(world, player);
   }
 }
 
