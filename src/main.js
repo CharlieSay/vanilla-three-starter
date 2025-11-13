@@ -6,8 +6,8 @@ import { component } from '@/canvas/dispatcher';
 import loader from '@/canvas/loader';
 import renderer from '@/canvas/renderer';
 import scene from '@/canvas/scene';
-import { Grid } from '@/canvas/meshes/Grid/Grid';
-import { Suzanne } from '@/canvas/meshes/Suzanne/Suzanne';
+import { World } from '@/game/world/World';
+import { Player } from '@/game/entities/Player';
 // import postfx from '@/canvas/postfx/postfx';
 
 let stats = null;
@@ -43,8 +43,12 @@ class Site extends component(null, {
     }
   }
   onLoadEnd() {
-    new Grid()
-    new Suzanne()
+    // Initialize game world
+    const world = new World(64, 64, 16);
+    const player = new Player(world);
+    
+    // Set camera to follow player
+    camera.setFollowTarget(player);
   }
 }
 
